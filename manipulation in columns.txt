@@ -1,0 +1,45 @@
+#inserting column in pandas DataFrame
+
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('/Users/rahulverma/downloads/DataFrame.csv')
+
+series = np.arange(0,63)
+
+df.insert( 2, 'Series', series, True)
+
+#DataFrame.insert(loc, columnName, values, allowDuplicate)
+
+''' loc = where to be locate column in DataFrame (starting from 0)
+coumnName = name of coumn 'NewColumn'
+values = values to be insert in column
+allowDuplicate = True/False check that columnName is already present or not '''
+
+#alternate way to create a new column
+df['NewColumn'] = series 
+
+#alternate way to create a new column
+df.assign( Series = series) # df.assign( columnName = columnValues)
+
+# Rename of columns
+
+df.rename( columns = { 'oldName' : 'NewNAme' } )
+
+#delete column
+
+del df['ColumnNameToDrop']
+
+df.drop(['ColumnName'], inplace = True) #inplace=True delete from original DAtaFrame, inplace = False return duplicate DatFrame with deleted column 
+
+
+# Reanrange Columns in DataFrame
+
+column = list(df.cloumns) #make a list of cloumns of df
+
+new_column = coiumn[-1:] + column[:-1] #this will bring the last column to the first 
+
+# column[-1:] last element of list column[:-1] toi the last element of list
+# when we add the the first element of list go to last and last element becomes first
+# because column[:-1] is list of elements except last element and column[-1:] it is the last element
+# column[-1:] + column[:-1] in this we are adding the last element first and then column[:-1](all elemnts except last)

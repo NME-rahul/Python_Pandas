@@ -1,0 +1,30 @@
+# concat two or more DataFrame
+df1 = pd.DataFrame({ 'Name' : ['Rahul', 'Neelam', 'Vishwajit'], 'Marks' : [100, 100, 100], 'Branch':['AInDS', 'CSE', 'Civil']})
+df2 = { 'Name': ['Amit', 'Karan', 'Rohit'], 'Marks':[100,100,100], 'Branch':['ME', 'ME', 'AInDS']}
+df2 = pd.DataFrame(df2)
+
+df3 = { 'Name' : ['Bhavesh', 'Mayank', 'Devendra'], 'Marks':[100,100,100], 'Branch':['ECE', 'EE', 'BCA']}
+df2 = pd.DataFrame(df3)
+
+df = concat([df1, df2, df3]) #it will concat the DataFrame's but their index values will repeat as their data inserted
+
+#for this use df.set_index([])
+
+s = pd.Series([1,2,3,4,5,6,7,8,9])
+df.set_index([s]) #now this will return their indexing 1,2,3,4,5,6,7,8,9
+
+#merge two or more DataFrame's
+#in this if DataFrames have same column then it will merge only one time samw column 
+left = { 'Key': ['k0', 'k1', 'k2', 'k3'], 'A': ['A0', 'A1', 'A2', 'A3'], 'B': ['B0', 'B1', 'B2', 'B3']}
+left =pd.DataFrame(left)
+right = {'Key': ['k0', 'k1', 'k2', 'k3'], 'C': ['C0', 'C1', 'C2', 'C3'], 'D':['D0', 'D1', 'D2', 'D3']}
+
+pd.merge(left, right, how='inner', on='Key')
+
+#join two or more DataFrame's
+if two columns have same name then returns error
+
+left = pd.DataFrame({ 'A': ['A0', 'A1', 'A2', 'A3'], 'B': ['B0', 'B1', 'B2', 'B3'] }, index=['k0', 'k1', 'k2', 'k3'] )
+right = pd.DatFrame({ 'C': ['C0', 'C1', 'C2', 'C3'], 'D':['D0', 'D1', 'D2', 'D3'] }, index=['k0', 'k1', 'k2', 'k3'] )
+
+left.join(right)

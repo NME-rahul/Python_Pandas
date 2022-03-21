@@ -1,0 +1,60 @@
+import pandas as pd
+a = [1,2,3,5]
+b = pd.Series(a)
+print(b)
+output - 
+	 0 1
+ 	 1 2
+ 	 2 3
+	 3 5
+b = pd.Series(a,index=[a,b,c,d]) #we can give as we want like index=[6,2,'w','@']
+print(b)
+output - 
+	 a 1
+	 b 2
+	 c 3
+	 d 5
+	 
+
+# we can pass dictionary in Series()
+# we can add two series or add,multipy,substract,divide any value
+
+a = [1,2,4,6,8,9,0]
+b = [5,7,09,3,80,6,1]
+c = a + b  #add same index elements (if a series have more element then other then it gives NaN on that indexing)
+output - 
+	 0 6
+	 1 9
+	 2 13
+	 3 9
+	 4 88
+	 5 15
+	 6 1
+
+
+example - 
+a = pd.Series([1,2,5,7,3])
+b = pd.Series([5,6,3])
+c = a + b
+output - 
+	 0 6
+	 1 8
+	 2 8
+	 3 NaN
+	 4 NaN
+
+
+b = a + 1 #it adds 1 in all elements present in a list 
+b = a - 3 #it substract 1 in all elements present in a list 
+b = a * 4 #it multiply 1 in all elements present in a list 
+b = a / 2 #it divide 1 in all elements present in a list 
+
+example :- 
+a = pd.Series([1,2,5,7,3])
+c = a + 1
+output - 
+	 0 2
+	 1 3
+	 2 6
+	 3 8
+	 4 4
