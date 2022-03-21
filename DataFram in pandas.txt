@@ -1,0 +1,42 @@
+import pandas as pd
+a = pd.DataFrame({'Name' : ['rahul','arvind','nisha','khushboo'], 'marks' : [56,65,78,36]})
+print(a)
+output -  Name      Marks
+	0 rahul     56
+	1 arvind    65
+	2 nisha     78
+	3 khushboo  36
+
+
+->  a.shape #gives (rows,column) of dataframe
+
+
+methods in pandas - 
+===================
+
+a.head() #gives first five rows of dataframe
+a.tail() #gives last five rows of dataframe
+a.describe() #decribe the dataframe 
+
+a = pd.DataFrame({'Name' : ['rahul','arvind','nisha','khushboo'], 'marks' : [56,65,78,36]})
+
+print(a.describe())
+output -
+	 marks
+count   4.000000
+mean   58.750000
+std    17.651723
+min    36.000000
+25%    51.000000
+50%    60.500000
+75%    68.250000
+max    78.000000
+
+
+a.iolc[row_indexing,column_indexing] #index location 
+a.iloc[:5:1,2:8:2] #give row from 0 to 4 with step 1, coloum from 2 to 8 with step 3
+
+
+a.drop('name',axis=1) #it drops colum of dataframe
+a.drop([2,3,4,6],axis=0) #it drop rows(2,3,4,6{index}) of dataframe
+ 
