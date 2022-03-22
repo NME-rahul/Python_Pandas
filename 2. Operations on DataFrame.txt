@@ -4,27 +4,83 @@ df2 = { 'Name': ['Amit', 'Karan', 'Rohit'], 'Marks':[100,100,100], 'Branch':['ME
 df2 = pd.DataFrame(df2)
 
 df3 = { 'Name' : ['Bhavesh', 'Mayank', 'Devendra'], 'Marks':[100,100,100], 'Branch':['ECE', 'EE', 'BCA']}
-df2 = pd.DataFrame(df3)
+df3 = pd.DataFrame(df3)
 
-df = concat([df1, df2, df3]) #it will concat the DataFrame's but their index values will repeat as their data inserted
+df = pd.concat([df1, df2, df3]) #it will concat the DataFrame's but their index values will repeat as their data inserted
+
+output:
+        Name  Marks Branch
+0      Rahul    100  AInDS
+1     Neelam    100    CSE
+2  Vishwajit    100  Civil
+0       Amit    100     ME
+1      Karan    100     ME
+2      Rohit    100  AInDS
+0    Bhavesh    100    ECE
+1     Mayank    100     EE
+2   Devendra    100    BCA
+
 
 #for this use df.set_index([])
 
 s = pd.Series([1,2,3,4,5,6,7,8,9])
 df.set_index([s]) #now this will return their indexing 1,2,3,4,5,6,7,8,9
 
+output:
+ Name  Marks Branch
+1      Rahul    100  AInDS
+2     Neelam    100    CSE
+3  Vishwajit    100  Civil
+4       Amit    100     ME
+5      Karan    100     ME
+6      Rohit    100  AInDS
+7    Bhavesh    100    ECE
+8     Mayank    100     EE
+9   Devendra    100    BCA
+
+
 #merge two or more DataFrame's
-#in this if DataFrames have same column then it will merge only one time samw column 
+#in this if DataFrames have same column then it will merge only one time same column 
+
+# parameter how = {‘left’, ‘right’, ‘outer’, ‘inner’, ‘cross’}, default ‘inner’
+left: use only keys from left frame, similar to a SQL left outer join; preserve key order.
+
+right: use only keys from right frame, similar to a SQL right outer join; preserve key order.
+
+outer: use union of keys from both frames, similar to a SQL full outer join; sort keys lexicographically.
+
+inner: use intersection of keys from both frames, similar to a SQL inner join; preserve the order of the left keys.
+
+cross: creates the cartesian product from both frames, preserves the order of the left keys.
+
 left = { 'Key': ['k0', 'k1', 'k2', 'k3'], 'A': ['A0', 'A1', 'A2', 'A3'], 'B': ['B0', 'B1', 'B2', 'B3']}
-left =pd.DataFrame(left)
+left = pd.DataFrame(left)
+
 right = {'Key': ['k0', 'k1', 'k2', 'k3'], 'C': ['C0', 'C1', 'C2', 'C3'], 'D':['D0', 'D1', 'D2', 'D3']}
+right = pd.DataFrame(right)
 
 pd.merge(left, right, how='inner', on='Key')
+
+output:
+Key   A   B   C   D
+0  k0  A0  B0  C0  D0
+1  k1  A1  B1  C1  D1
+2  k2  A2  B2  C2  D2
+3  k3  A3  B3  C3  D3
+
+
 
 #join two or more DataFrame's
 if two columns have same name then returns error
 
 left = pd.DataFrame({ 'A': ['A0', 'A1', 'A2', 'A3'], 'B': ['B0', 'B1', 'B2', 'B3'] }, index=['k0', 'k1', 'k2', 'k3'] )
-right = pd.DatFrame({ 'C': ['C0', 'C1', 'C2', 'C3'], 'D':['D0', 'D1', 'D2', 'D3'] }, index=['k0', 'k1', 'k2', 'k3'] )
+right = pd.DataFrame({ 'C': ['C0', 'C1', 'C2', 'C3'], 'D':['D0', 'D1', 'D2', 'D3'] }, index=['k0', 'k1', 'k2', 'k3'] )
 
 left.join(right)
+
+output:
+     A   B   C   D
+k0  A0  B0  C0  D0
+k1  A1  B1  C1  D1
+k2  A2  B2  C2  D2
+k3  A3  B3  C3  D3
