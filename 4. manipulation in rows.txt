@@ -7,13 +7,16 @@ df.loc[len[df.index]] = [values, ....] #it will add row in the last
 #alternate way to add new row
 newRow = {'columnName' : 'Values', ....}
 df.append(newRow, ignore_index = True)
+#ignore_index : boolean, default False. If True, do not use the index values on the concatenation axis
 
 #if newRow = [1, 2, 3, 4, 5, 6] then it will append rows as well as columns or we can say if we did not make dict() then this will happen
 
-newRow = { 'columnName' : 'Values', ...}
-df.concat([df1, newRow], ignore_index = True)
+
+newRow = pd.Series({ 'Values', ...})
+#Note - We can concatenate only Pandas series
+pd.concat([df, newRow], ignore_index = True)
+
 
 #set index of DataFrame
-
 s = pd.Series([1,2,3,4,5,6,7,8,9])
 df.set_index([s])
