@@ -33,7 +33,7 @@ del df['ColumnNameToDrop']
 df.drop(['ColumnName'], inplace = True) #inplace=True delete from original DAtaFrame, inplace = False return duplicate DatFrame with deleted column 
 
 
-# Reanrange Columns in DataFrame
+# Rearange Columns in DataFrame
 
 column = list(df.cloumns) #make a list of cloumns of df
 
